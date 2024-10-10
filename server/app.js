@@ -1,6 +1,6 @@
 import express from "express"
 import cors from "cors"
-import { PrismaClient } from "@prisma/client"
+import authRouter from "./routes/auth.routes.js"
 
 const app = express()
 
@@ -11,13 +11,8 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-const prisma = new PrismaClient()
-app.get("/", async (req, res) => {
-  const users = await prisma.user.findMany()
-  const pets = await prisma.pet.findMany()
-
-  res.status(200).json({ users, pets })
-})
+// Routes
+app.use("/api/auth", authRouter)
 
 app.listen(3000, () => {
   console.log(`Server está rodando na porta 3000...`)
