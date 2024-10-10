@@ -1,5 +1,6 @@
 import express from "express"
 import cors from "cors"
+import userRouter from "./routes/user.routes.js"
 import authRouter from "./routes/auth.routes.js"
 
 const app = express()
@@ -12,6 +13,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 // Routes
+app.use("/api/user", userRouter)
 app.use("/api/auth", authRouter)
 
 app.listen(3000, () => {
