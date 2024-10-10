@@ -24,9 +24,28 @@ model Pet {
 }
 
 model User {
-  id    Int    @id @default(autoincrement())
-  email String @unique
-  name  String
-  role  String
-  pets  Pet[]
+  id       Int    @id @default(autoincrement())
+  email    String @unique
+  name     String
+  password String
+  role     String @default("User")
+  pets     Pet[]
+  venda    Venda? @relation(fields: [vendaId], references: [id])
+  vendaId  Int?
+}
+
+model Produto {
+  id      Int    @id @default(autoincrement())
+  name    String
+  desc    String
+  price   String
+  venda   Venda  @relation(fields: [vendaId], references: [id])
+  vendaId Int
+}
+
+model Venda {
+  id         Int       @id @default(autoincrement())
+  produtos   Produto[]
+  user       User[]
+  totalPrice String
 }
