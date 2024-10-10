@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt"
 import { PrismaClient } from "@prisma/client"
  
-const prisma = PrismaClient()
+const prisma = new PrismaClient()
 
 class UserService {
   async findByEmail(email) {
@@ -20,9 +20,11 @@ class UserService {
       const saltRounds = 8;
       const salt = bcrypt.genSaltSync(saltRounds)
       const hashedPassword = await bcrypt.hash(user.password, salt)
+      user.password = hashedPassword
       const createdUser = await prisma.user.create({
-        ...user,
-        password: hashedPassword
+        data: {
+          ...user
+        }
       })
       return createdUser;
     } catch (error) {
