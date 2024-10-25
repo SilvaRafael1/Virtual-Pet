@@ -3,8 +3,8 @@ import AuthService from "../services/auth.service.js"
 class AuthController {
   async login(req, res) {
     const { email, password } = req.body
-    const token = await AuthService.login(email, password)
-    res.status(200).json({ token })
+    const user = await AuthService.login(email, password)
+    res.status(200).json({ user })
   }
 
   async register(req, res) {

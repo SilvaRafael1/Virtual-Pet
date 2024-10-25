@@ -21,7 +21,13 @@ class AuthService {
         expiresIn: "2h"
       })
 
-      return token;
+      const user = {
+        id: findUser.id,
+        token,
+        role: findUser.role
+      }
+
+      return user;
     } catch (error) {
       console.error(error)
     }
