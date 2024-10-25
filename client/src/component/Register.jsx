@@ -1,15 +1,12 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import client from "../api/Api"
-import { AuthContext } from "../context/AuthContext";
 import { Box, Button, FormControl, FormLabel, TextField, ThemeProvider } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import DefaultTheme from "../theme/DefaultTheme";
-import { LockOpen, Undo } from "@mui/icons-material";
+import { LockOpen } from "@mui/icons-material";
 
 export default function Register() {
   const [errorMessage, setErrorMessage] = useState(null);
-  const { setToken, setRole, setId } = useContext(AuthContext);
-  const navigate = useNavigate();
   
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -111,6 +108,5 @@ export default function Register() {
         </div>
       </div>
     </ThemeProvider>
-
   );
 };
