@@ -9,6 +9,9 @@ export default {
       const user = await prisma.user.findUnique({
         where: {
           id
+        },
+        include: {
+          pets: true
         }
       })
 

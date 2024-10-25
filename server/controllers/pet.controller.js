@@ -19,10 +19,14 @@ export default {
 
   async create(req, res) {
     try {
-      const { userid } = req.params
+      const userid = parseInt(req.params.userid)
       const { name, type, race, size } = req.body
       const pet = await prisma.pet.create({
-        data: { name, type, race, size, ownerId: userid }
+        data: { name, type, race, size, owner: {
+          connect: {
+            id: userid
+          }
+        } }
       })
       return res.json({ pet })
     } catch (error) {

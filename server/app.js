@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use("/api/user", userRouter)
 app.use("/api/auth", authRouter)
 app.use("/api/product", productRouter)
-app.use("/api/user/:userid/pets", petRouter)
+app.use("/api/user", petRouter)
 
 app.listen(3000, () => {
   console.log(`Server está rodando na porta 3000...`)

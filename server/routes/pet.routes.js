@@ -3,9 +3,9 @@ import petController from "../controllers/pet.controller.js";
 
 const petRouter = express.Router()
 
-petRouter.get("/", petController.index)
-petRouter.post("/", petController.create)
-petRouter.post("/:petid", petController.update)
-petRouter.delete("/:petid", petController.delete)
+petRouter.get("/:userid/pets/", petController.index)
+petRouter.post("/:userid/pets/", petController.create)
+petRouter.post("/:userid/pets/:petid", petController.update)
+petRouter.delete("/:userid/pets/:petid", petController.delete)
 
 export default petRouter
