@@ -5,6 +5,8 @@ import Auth from "./component/Auth";
 import Main from "./component/Main";
 import Navbar from "./component/Navbar";
 import NotFound from "./component/NotFound";
+import Register from "./component/Register";
+
 const AppRoutes = () => {
   const { token } = useContext(AuthContext);
 
@@ -20,6 +22,7 @@ const AppRoutes = () => {
         ) : (
           <>
             <Route path="/login" Component={Auth} />
+            <Route path="/register" Component={Register} />
             <Route path="*" element={<Navigate to="/login" replace />} />
           </>
         )}

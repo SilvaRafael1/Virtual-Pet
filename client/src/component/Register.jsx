@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import DefaultTheme from "../theme/DefaultTheme";
 import { LockOpen, Undo } from "@mui/icons-material";
 
-export default function Auth() {
+export default function Register() {
   const [errorMessage, setErrorMessage] = useState(null);
   const { setToken, setRole, setId } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -17,19 +17,11 @@ export default function Auth() {
     const formJson = Object.fromEntries(formData.entries());
 
     try {
-      const response = await client.post("/auth/login", formJson);
+      const response = await client.post("/auth/register", formJson);
       console.log(response)
-      setToken(response.data.user.token);
-      setRole(response.data.user.role);
-      setId(response.data.user.id);
-      localStorage.setItem("token", response.data.user.token);
-      localStorage.setItem("role", response.data.user.role);
-      localStorage.setItem("id", response.data.user.id);
-      window.location.href = "/main"
+      window.location.href = "/login"
     } catch (error) {
       console.error("Authentication failed:", error);
-      setToken(null);
-      localStorage.removeItem("token");
       if (error.response && error.response.data) {
         setErrorMessage(error.response.data);
       } else {
@@ -54,16 +46,31 @@ export default function Auth() {
             }}
             onSubmit={handleSubmit}
           >
-            <div className="flex w-full justify-center">
+            <div className="flex flex-col w-full items-center">
               <div className="text-4xl font-bold font-serif text-[#273469]">VIRTUAL Pet</div>
+              <div className="text-2xl font-semibold font-serif text-[#30343F]">Registre-se</div>
             </div>
+            <FormControl>
+              <FormLabel htmlFor="name">Nome Completo</FormLabel>
+              <TextField
+                id="name"
+                type="text"
+                name="name"
+                placeholder="Insira seu nome"
+                autoFocus
+                required
+                fullWidth
+                variant="outlined"
+                margin='dense'
+              />
+            </FormControl>
             <FormControl>
               <FormLabel htmlFor="email">E-mail</FormLabel>
               <TextField
                 id="email"
                 type="text"
                 name="email"
-                placeholder="Seu e-mail"
+                placeholder="Insira seu e-mail"
                 autoFocus
                 required
                 fullWidth
@@ -77,7 +84,7 @@ export default function Auth() {
                 id="password"
                 type="password"
                 name="password"
-                placeholder="Sua senha"
+                placeholder="Insira sua senha"
                 required
                 fullWidth
                 variant="outlined"
@@ -88,8 +95,8 @@ export default function Auth() {
               {errorMessage && <div style={{ color: "red" }}>{errorMessage}</div>}{" "}
             </div>
             <div className="flex w-full justify-center">
-              <Link to={"/register"}>
-                <div className="font-semibold text-[#273469]">Não possui conta? Clique aqui para registrar-se</div>
+              <Link to={"/login"}>
+                <div className="font-semibold text-[#273469]">Já possui conta? Clique aqui para entrar</div>
               </Link>
             </div>
             <Button
@@ -98,7 +105,7 @@ export default function Auth() {
               variant="contained"
               startIcon={<LockOpen />}
             >
-              Entrar
+              Registrar
             </Button>
           </Box>
         </div>
