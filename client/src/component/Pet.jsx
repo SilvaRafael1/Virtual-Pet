@@ -17,8 +17,10 @@ import {
   Button,
 } from "@mui/material";
 import { Add } from "@mui/icons-material";
+import PetTooltip from "./PetTooltip";
+import client from "../api/Api";
 
-export default function Pet({ pets }) {
+export default function Pet({ userid, pets }) {
   // Dialog Adição de Pets
   const [openDialogPetAdd, setOpenDialogPetAdd] = useState(false);
   const handleDialogPetAddClick = () => {
@@ -30,7 +32,7 @@ export default function Pet({ pets }) {
 
   // Submit Adição de Pets
   const handleSubmitPetAdd = async (data) => {
-    await client.post(`/user/${id}/pets/`, data).then(() => {
+    await client.post(`/user/${userid}/pets/`, data).then(() => {
       handleDialogPetAddClose();
       location.reload();
     });
@@ -90,7 +92,7 @@ export default function Pet({ pets }) {
                         <TableCell align="right">{pet.type}</TableCell>
                         <TableCell align="right">{pet.race}</TableCell>
                         <TableCell align="right">{pet.size}</TableCell>
-                        <TableCell align="right">Editar Deletar</TableCell>
+                        <TableCell align="right"><PetTooltip userid={userid} pet={pet} /></TableCell>
                       </TableRow>
                     ))}
                   </TableBody>

@@ -35,10 +35,10 @@ export default {
   },
 
   async update(req, res) {
+    const petid = parseInt(req.params.petid)
     const updatePet = await prisma.pet.update({
       where: {
-        id: req.params.petid,
-        ownerId: req.params.userid
+        id: petid,
       },
       data: req.body
     })
@@ -46,9 +46,10 @@ export default {
   },
 
   async delete(req, res) {
+    const petid = parseInt(req.params.petid)
     await prisma.pet.delete({
       where: {
-        id: req.params.petid
+        id: petid
       }
     });
     return res.send("Pet excluído")

@@ -39,7 +39,7 @@ export default function Main() {
           <Divider variant="middle" component="div" />
         </div>
         <div className="flex flex-row">
-          <Pets pets={pets} />
+          <Pets userid={user.id} pets={pets} />
           <Divider
             variant="fullWidth"
             component="div"
