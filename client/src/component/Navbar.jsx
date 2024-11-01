@@ -5,11 +5,9 @@ import {
   ListItem,
   ListItemText,
   Typography,
-  ThemeProvider,
 } from "@mui/material";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Home, ShoppingBagOutlined, Shuffle } from "@mui/icons-material";
-import DefaultTheme from "../theme/DefaultTheme";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 
@@ -17,7 +15,6 @@ export default function Navbar() {
   const { id } = useContext(AuthContext);
   const navigate = useNavigate()
   return (
-    <ThemeProvider theme={DefaultTheme}>
       <AppBar color="primary" position="static">
         <Toolbar>
           <div className="h-full w-full flex flex-row items-center content-center justify-between">
@@ -71,6 +68,5 @@ export default function Navbar() {
           </div>
         </Toolbar>
       </AppBar>
-    </ThemeProvider>
   );
 }

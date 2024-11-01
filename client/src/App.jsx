@@ -6,6 +6,8 @@ import Main from "./component/Main";
 import Navbar from "./component/Navbar";
 import NotFound from "./component/NotFound";
 import Register from "./component/Register";
+import { ThemeProvider } from "@mui/material";
+import DefaultTheme from "./theme/DefaultTheme";
 
 const AppRoutes = () => {
   const { token } = useContext(AuthContext);
@@ -36,7 +38,9 @@ export default function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
+    <ThemeProvider theme={DefaultTheme}>
         <AppRoutes />
+        </ThemeProvider>
       </BrowserRouter>
     </AuthProvider>
   );
