@@ -29,9 +29,9 @@ export default {
   },
 
   async create(req, res) {
-    const { name, desc, price } = req.body
+    const { name, desc, price, image } = req.body
     const produto = await prisma.produto.create({
-      data: { name, desc, price }
+      data: { name, desc, price, image }
     })
     return res.json({ produto })
   },

@@ -38,7 +38,8 @@ model Produto {
   id      Int    @id @default(autoincrement())
   name    String
   desc    String
-  price   String
+  price   Float
+  image   String
   venda   Venda  @relation(fields: [vendaId], references: [id])
   vendaId Int
 }
