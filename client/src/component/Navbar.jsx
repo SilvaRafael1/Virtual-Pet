@@ -8,10 +8,13 @@ import {
   ThemeProvider,
 } from "@mui/material";
 import { NavLink, useNavigate } from "react-router-dom";
-import { Home, Add, ShoppingBagOutlined, Shuffle } from "@mui/icons-material";
+import { Home, ShoppingBagOutlined, Shuffle } from "@mui/icons-material";
 import DefaultTheme from "../theme/DefaultTheme";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 export default function Navbar() {
+  const { id } = useContext(AuthContext);
   const navigate = useNavigate()
   return (
     <ThemeProvider theme={DefaultTheme}>
@@ -26,7 +29,7 @@ export default function Navbar() {
                 <ListItemText inset>
                   <Typography color="inherit" variant="h6">
                     <NavLink
-                      to={"/main"}
+                      to={`/main/${id}`}
                       className="nav-link flex items-center"
                     >
                       <Home />
@@ -39,7 +42,7 @@ export default function Navbar() {
                   <ListItemText inset>
                     <Typography color="inherit" variant="h6">
                       <NavLink
-                        to={"/getPedidos"}
+                        to={"/products"}
                         className="nav-link flex items-center"
                       >
                         <ShoppingBagOutlined />
@@ -50,7 +53,7 @@ export default function Navbar() {
                   <ListItemText inset>
                     <Typography color="inherit" variant="h6">
                       <NavLink
-                        to={"/produtos/random"}
+                        to={"/services"}
                         className="nav-link flex items-center"
                       >
                         <Shuffle />
