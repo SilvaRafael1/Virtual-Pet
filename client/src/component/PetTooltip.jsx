@@ -67,10 +67,10 @@ export default function PetTooltip({userid, pet}) {
           }
         }}
       >
-        <DialogTitle>Deletar Arquivo</DialogTitle>
+        <DialogTitle>Deletar Pet</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            <span>Tem certeza que deseja deletar o arquivo com o nome de <b>{pet.name}</b>.<br /></span>
+            <span>Tem certeza que deseja deletar o pet com o nome de <b>{pet.name}</b>.<br /></span>
             <span className='text-red-500'>
               {error ? error : ""}
             </span>
@@ -99,7 +99,7 @@ export default function PetTooltip({userid, pet}) {
           }
         }}
       >
-        <DialogTitle>Renomear Arquivo</DialogTitle>
+        <DialogTitle>Renomear Pet</DialogTitle>
         <DialogContent>
           <DialogContentText>
             <span>Você irá editar <b>{pet.name}</b> para:<br /></span>
