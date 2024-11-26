@@ -4,6 +4,7 @@ import { useContext } from "react";
 import Auth from "./component/Auth";
 import Main from "./component/Main";
 import Navbar from "./component/Navbar";
+import Products from "./component/Products";
 import NotFound from "./component/NotFound";
 import Register from "./component/Register";
 import { ThemeProvider } from "@mui/material";
@@ -20,6 +21,7 @@ const AppRoutes = () => {
         {token ? (
           <>
             <Route exact path="/main/:id" Component={Main} />
+            <Route path="/products" Component={Products} />
             <Route path="/payment" Component={Payment} />
             <Route path="*" Component={NotFound} />
           </>
