@@ -3,6 +3,7 @@ import client from "../api/Api";
 import { useParams } from "react-router-dom";
 import { Divider } from "@mui/material";
 import Pets from "./Pet";
+import Sales from "./Sales";
 
 export default function Main() {
   const { id } = useParams();
@@ -30,10 +31,11 @@ export default function Main() {
 
   return (
     <div className="flex justify-center mt-4">
-      <div className="border border-solid rounded-md p-5 w-[1000px]">
+      <div className="border border-solid rounded-md shadow-md p-5 w-[1000px]">
         <div>
           <div className="text-3xl font-bold">{user.name}</div>
-          <div className="my-2 font-thin">{user.email}</div>
+          <div className="my-2 font-thin">E-mail: {user.email}</div>
+          <div className="my-2 font-thin">Endereço: {user.address}</div>
         </div>
         <div>
           <Divider variant="middle" component="div" />
@@ -46,7 +48,7 @@ export default function Main() {
             orientation="vertical"
             flexItem
           />
-          <div className="w-[50%] p-4 font-semibold">Últimas Compras</div>
+          <Sales userid={id} />
         </div>
       </div>
     </div>
