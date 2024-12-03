@@ -5,6 +5,7 @@ import authRouter from "./routes/auth.routes.js"
 import productRouter from "./routes/product.routes.js"
 import petRouter from "./routes/pet.routes.js"
 import paymentRouter from "./routes/payment.routes.js"
+import servicesRouter from "./routes/services.routes.js"
 
 const app = express()
 
@@ -21,6 +22,7 @@ app.use("/api/auth", authRouter)
 app.use("/api/product", productRouter)
 app.use("/api/user", petRouter)
 app.use("/api/payment", paymentRouter)
+app.use("/api/services", servicesRouter)
 
 app.listen(3000, () => {
   console.log(`Server está rodando na porta 3000...`)
