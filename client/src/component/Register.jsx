@@ -62,6 +62,20 @@ export default function Register() {
               />
             </FormControl>
             <FormControl>
+              <FormLabel htmlFor="address">Endereço Completo</FormLabel>
+              <TextField
+                id="address"
+                type="text"
+                name="address"
+                placeholder="Insira seu endereço completo"
+                autoFocus
+                required
+                fullWidth
+                variant="outlined"
+                margin='dense'
+              />
+            </FormControl>
+            <FormControl>
               <FormLabel htmlFor="email">E-mail</FormLabel>
               <TextField
                 id="email"
