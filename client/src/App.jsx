@@ -10,6 +10,7 @@ import Register from "./component/Register";
 import { ThemeProvider } from "@mui/material";
 import DefaultTheme from "./theme/DefaultTheme";
 import Payment from "./component/Payment";
+import PaymentSuccess from "./component/PaymentSuccess";
 
 const AppRoutes = () => {
   const { token } = useContext(AuthContext);
@@ -23,6 +24,7 @@ const AppRoutes = () => {
             <Route exact path="/main/:id" Component={Main} />
             <Route path="/products" Component={Products} />
             <Route path="/payment" Component={Payment} />
+            <Route path="/payment/success" Component={PaymentSuccess} />
             <Route path="*" Component={NotFound} />
           </>
         ) : (
