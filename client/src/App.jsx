@@ -5,6 +5,7 @@ import Auth from "./component/Auth";
 import Main from "./component/Main";
 import Navbar from "./component/Navbar";
 import Products from "./component/Products";
+import Services from "./component/Services";
 import NotFound from "./component/NotFound";
 import Register from "./component/Register";
 import { ThemeProvider } from "@mui/material";
@@ -23,6 +24,7 @@ const AppRoutes = () => {
           <>
             <Route exact path="/main/:id" Component={Main} />
             <Route path="/products" Component={Products} />
+            <Route path="/services" Component={Services} />
             <Route path="/payment" Component={Payment} />
             <Route path="/payment/success" Component={PaymentSuccess} />
             <Route path="*" Component={NotFound} />
