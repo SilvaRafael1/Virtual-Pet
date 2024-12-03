@@ -24,7 +24,8 @@ class AuthService {
       const user = {
         id: findUser.id,
         token,
-        role: findUser.role
+        role: findUser.role,
+        address: findUser.address
       }
 
       return user;
@@ -33,10 +34,10 @@ class AuthService {
     }
   }
 
-  async register(email, name, password) {
+  async register(email, name, address, password) {
     try {
       const user = {
-        email, name, password
+        email, name, address, password
       }
       const createdUser = await UserService.createUser(user)
       return createdUser

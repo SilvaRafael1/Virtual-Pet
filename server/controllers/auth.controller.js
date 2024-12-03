@@ -8,8 +8,8 @@ class AuthController {
   }
 
   async register(req, res) {
-    const { email, name, password } = req.body
-    const createdUser = await AuthService.register(email, name, password)
+    const { email, name, address, password } = req.body
+    const createdUser = await AuthService.register(email, name, address, password)
     res.status(201).json({ createdUser })
   }
 }
