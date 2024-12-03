@@ -100,7 +100,7 @@ export default function ProductsTooltip ({product}) {
           }
         }}
       >
-        <DialogTitle>Renomear Produto</DialogTitle>
+        <DialogTitle>Editar Produto</DialogTitle>
         <DialogContent>
           <DialogContentText>
             <span>Você irá editar <b>{product.name}</b> para:<br /></span>
