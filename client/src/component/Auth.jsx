@@ -8,7 +8,7 @@ import { LockOpen, Undo } from "@mui/icons-material";
 
 export default function Auth() {
   const [errorMessage, setErrorMessage] = useState(null);
-  const { setToken, setRole, setId } = useContext(AuthContext);
+  const { setToken, setRole, setId, setAddress } = useContext(AuthContext);
   const navigate = useNavigate();
   
   const handleSubmit = async (e) => {
@@ -18,14 +18,14 @@ export default function Auth() {
 
     try {
       const response = await client.post("/auth/login", formJson);
-      console.log(response)
       setToken(response.data.user.token);
       setRole(response.data.user.role);
       setId(response.data.user.id);
+      setAddress(response.data.user.address);
       localStorage.setItem("token", response.data.user.token);
       localStorage.setItem("role", response.data.user.role);
       localStorage.setItem("id", response.data.user.id);
-      window.location.href = "/main"
+      localStorage.setItem("address", response.data.user.address);
     } catch (error) {
       console.error("Authentication failed:", error);
       setToken(null);
