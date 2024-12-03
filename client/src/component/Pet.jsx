@@ -57,7 +57,7 @@ export default function Pet({ userid, pets }) {
             <div className="my-4">
               <TableContainer component={Paper}>
                 <Table aria-label="simple table">
-                  <TableHead>
+                  <TableHead className="bg-zinc-200">
                     <TableRow>
                       <TableCell>
                         <b>Nome</b>
