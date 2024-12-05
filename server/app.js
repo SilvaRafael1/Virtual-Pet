@@ -8,6 +8,11 @@ import petRouter from "./routes/pet.routes.js"
 import paymentRouter from "./routes/payment.routes.js"
 import servicesRouter from "./routes/services.routes.js"
 import { Server } from "socket.io"
+import chatSaveMessage from "./services/chatSaveMessage.js"
+import chatGetMessage from "./services/chatGetMessage.js"
+import insertAdminUser from "./services/insertAdminUser.js"
+import chatRouter from "./routes/chat.routes.js"
+import chatJoinVet from "./services/chatJoinVet.js"
 
 const app = express()
 
@@ -25,8 +30,10 @@ app.use("/api/product", productRouter)
 app.use("/api/user", petRouter)
 app.use("/api/payment", paymentRouter)
 app.use("/api/services", servicesRouter)
+app.use("/api/chat", chatRouter)
 
 // Auto insert admin user
+insertAdminUser();
 
 const server = http.createServer(app)
 
