@@ -67,3 +67,12 @@ model ProdutoVenda {
   venda     Venda   @relation(fields: [vendaId], references: [id])
   vendaId   Int
 }
+
+model Message {
+  id          Int     @id @default(autoincrement())
+  message     String
+  username    String
+  room        Int
+  createdTime String
+  vet         Boolean @default(false)
+}
