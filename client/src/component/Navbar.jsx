@@ -6,14 +6,14 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
-import { NavLink, useNavigate } from "react-router-dom";
-import { Home, ShoppingBagOutlined, Shuffle } from "@mui/icons-material";
+import { NavLink } from "react-router-dom";
+import { Home, ShoppingBagOutlined, Shuffle, Chat, AdminPanelSettings } from "@mui/icons-material";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 
 export default function Navbar() {
-  const { id } = useContext(AuthContext);
-  const navigate = useNavigate()
+  const { id, role } = useContext(AuthContext);
+
   return (
       <AppBar color="primary" position="static">
         <Toolbar>
@@ -58,12 +58,60 @@ export default function Navbar() {
                       </NavLink>
                     </Typography>
                   </ListItemText>
+                  
+                  {role == "User" ? (
+                    <ListItemText inset>
+                      <Typography color="inherit" variant="h6">
+                        <NavLink
+                          to={`/chat/${id}`}
+                          className="nav-link flex items-center"
+                        >
+                          <Chat />
+                          Chat
+                        </NavLink>
+                      </Typography>
+                    </ListItemText>
+                  ) : (
+                    <div></div>
+                  )}
+                  
+                  {role == "Vet" ? (
+                    <ListItemText inset>
+                      <Typography color="inherit" variant="h6">
+                        <NavLink
+                          to={`/chats/`}
+                          className="nav-link flex items-center"
+                        >
+                          <Chat />
+                          Chats
+                        </NavLink>
+                      </Typography>
+                    </ListItemText>
+                  ) : (
+                    <div></div>
+                  )}
+                  
+                  {role == "Admin" ? (
+                    <ListItemText inset>
+                      <Typography color="inherit" variant="h6">
+                        <NavLink
+                          to={`/admin`}
+                          className="nav-link flex items-center"
+                        >
+                          <AdminPanelSettings />
+                          Admin
+                        </NavLink>
+                      </Typography>
+                    </ListItemText>
+                  ) : (
+                    <div></div>
+                  )}
                 </>
               </ListItem>
             </List>
             <div className="cursor-pointer" onClick={() => {
               localStorage.clear()
-              navigate(0)
+              window.location = "/login"
             }}>Sair</div>
           </div>
         </Toolbar>
