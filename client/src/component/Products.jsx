@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import {
   Divider,
   Grid2,
@@ -20,12 +20,14 @@ import { ShoppingBag, Delete } from "@mui/icons-material";
 import client from "../api/Api";
 import ProductsTooltip from "./ProductsTooltip";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 export default function Products() {
   const [products, setProducts] = useState([]);
   const [openDialogProductAdd, setOpenDialogProductAdd] = useState(false);
   const [sacola, setSacola] = useState([]);
   const [totalProdutos, setTotalProdutos] = useState(0);
+  const { role } = useContext(AuthContext);
 
   const handleDialogProductAddClick = () => {
     setOpenDialogProductAdd(true);
@@ -95,18 +97,24 @@ export default function Products() {
         <div></div>
       )}
       <div className="border border-solid rounded-md shadow-md p-5 w-[1000px]">
-        <div className="mb-2 w-full flex justify-center">
-          <Button
-            variant="contained"
-            onClick={() => {
-              setOpenDialogProductAdd(true);
-            }}
-          >
-            Adicionar Produto
-          </Button>
-        </div>
-        <Divider variant="middle" component="div" />
-        <div className="my-2"></div>
+        {role == "Admin" ? (
+          <div>
+            <div className="mb-2 w-full flex justify-center">
+              <Button
+                variant="contained"
+                onClick={() => {
+                  setOpenDialogProductAdd(true);
+                }}
+              >
+                Adicionar Produto
+              </Button>
+            </div>
+            <Divider variant="middle" component="div" />
+            <div className="my-2"></div>
+          </div>
+        ) : (
+          <div></div>
+        )}
         <Grid2 container rowSpacing={1} columnSpacing={1}>
           {products.map((product) => (
             <Grid2 key={product.id} size={4}>
@@ -137,7 +145,11 @@ export default function Products() {
                   >
                     Adicionar ao carrinho
                   </Button>
-                  <ProductsTooltip product={product} />
+                  {role == "Admin" ? (
+                    <ProductsTooltip product={product} />
+                  ) : (
+                    <div></div>
+                  )}
                 </CardActions>
               </Card>
             </Grid2>
